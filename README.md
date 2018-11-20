@@ -5,16 +5,14 @@ A mod for The Long Dark that lets you play the "4 Days of Night" halloween event
 ## Installation
 
 1. If you haven't done so already, install the [Mod Loader](https://github.com/zeobviouslyfakeacc/ModLoaderInstaller)
-2. Install the mod automatically by using [WulfMarius's Mod-Installer](https://github.com/WulfMarius/Mod-Installer/releases)
-
-or
-
-1. If you haven't done so already, install the [Mod Loader](https://github.com/zeobviouslyfakeacc/ModLoaderInstaller)
 2. If you haven't done so already, install [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings) v1.1 or newer
 3. Download the latest version of `MoreDaysOfNight.dll` from the [releases page](https://github.com/zeobviouslyfakeacc/MoreDaysOfNight/releases)
 4. Move `MoreDaysOfNight.dll` into the mods folder in your TLD install directory
-
-Alternatively, you can download `MoreDaysOfNight_with_ModSettings.zip` and extract it into your mods directory.
+5. Download `4DoN_Scenes_Copy_Into_tld_Data.zip` from the [releases page](https://github.com/zeobviouslyfakeacc/MoreDaysOfNight/releases)
+6. Extract the files in `4DoN_Scenes_Copy_Into_tld_Data.zip` into the `tld_Data` folder in your TLD install directory.  
+   (A file called `XYZ` in the ZIP archive needs to end up at `TheLongDark/tld_Data/XYZ`)
+7. Confirm that you want to overwrite the file called `globalgamemanagers`.  
+   If you're not asked for confirmation, you probably didn't extract the files into the correct directory. See **6.**
 
 ## Instructions
 
