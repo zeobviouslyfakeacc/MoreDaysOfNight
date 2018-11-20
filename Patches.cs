@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Collections.Generic;
 using Harmony;
+using UnityEngine;
 
 namespace MoreDaysOfNight {
 	internal static class Patches {
@@ -18,11 +19,20 @@ namespace MoreDaysOfNight {
 			}
 		}
 
-		[HarmonyPatch(typeof(ThreeDaysOfNight), "Update", new Type[0])]
+		[HarmonyPatch(typeof(ThreeDaysOfNight), "Awake")]
 		private static class RestoreUpdate {
-			private static bool Prefix() {
+			private static void Postfix(ThreeDaysOfNight __instance) {
+				// Work around not being able to patch the empty ThreeDaysOfNight#Update method as this doesn't work on MacOS
+				// Instead, add another MonoBehavior and use that object's Update method
+				__instance.gameObject.AddComponent<MacWorkaround>();
+			}
+		}
+
+		private class MacWorkaround : MonoBehaviour {
+
+			private void Update() {
 				if (GameManager.m_IsPaused)
-					return false;
+					return;
 
 				int currentDay = ThreeDaysOfNight.GetCurrentDayNumber();
 				if (ThreeDaysOfNight.m_CurrentDay != currentDay && !IsMainMenu() && Is4DoNSave()) {
@@ -36,7 +46,6 @@ namespace MoreDaysOfNight {
 						GameManager.GetWeatherTransitionComponent().OverrideDurationOfStageInCurrentWeatherSet(WeatherStage.Blizzard, 999999f);
 					}
 				}
-				return false; // Don't run original method
 			}
 		}
 
@@ -102,7 +111,7 @@ namespace MoreDaysOfNight {
 			}
 
 			Version version = Assembly.GetExecutingAssembly().GetName().Version;
-			UnityEngine.Debug.Log("[MoreDaysOfNight] Version " + version + " loaded!");
+			Debug.Log("[MoreDaysOfNight] Version " + version + " loaded!");
 		}
 
 		private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
