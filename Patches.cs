@@ -58,6 +58,13 @@ namespace MoreDaysOfNight {
 			}
 		}
 
+		[HarmonyPatch(typeof(Panel_MainMenu), "Awake", new Type[0])]
+		private static class Prevent4DoNSaveDeletion {
+			private static void Postfix(Panel_MainMenu __instance) {
+				Traverse.Create(__instance).Field("m_DoneFourDaysOfNightDeleteCheck").SetValue(true);
+			}
+		}
+
 		// All of the places ThreeDaysOfNight.IsActive got inlined at... :/
 
 		private static readonly List<MethodInfo> methodsToPatch = new List<MethodInfo>() {
