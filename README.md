@@ -2,6 +2,8 @@
 
 A mod for The Long Dark that lets you play the "4 Days of Night" halloween event.
 
+#### This mod only works with TLD v1.39. Don't even try to install it with TLD v1.40 or later!
+
 ## Installation
 
 1. If you haven't done so already, install the [Mod Loader](https://github.com/zeobviouslyfakeacc/ModLoaderInstaller)
